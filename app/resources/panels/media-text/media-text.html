@@ -1,0 +1,61 @@
+<div 
+class="media-text panel-padding clearfix" 
+panel-edit-handler 
+ng-class="{'grey':data.grayBackground}"
+highlighter 
+is-multiple="false"
+highlight="data.editing"
+>
+  <div class="code-preview">
+     <!-- Start Media Text panel -->
+     <div class="em-l-container">
+    <div class="media-card">
+      <div class="em-l-container em-u-text-align-center">
+        <h3 class="info-hd contact-hd panel-main-hd" ng-if="data.panelTitle.enable" ng-bind-html="data.panelTitle.data"></h3>
+      </div>
+      <div class="em-l-grid em-l-grid--2up">
+        <div class="em-l-grid__item">
+          <div class="fpo-block media-text-block">
+            <img ng-if="data.media.type=='Image'" ng-src="{{data.media.data}}" />
+            <video ng-if="data.media.type=='Video'" ng-src="{{data.media.data}}" type="video/mp4" controls>
+              <!-- <source src="{{data.media.data}}" type="video/mp4"> -->
+            </video>
+          </div>
+        </div>
+        <div class="em-l-grid__item">
+          <div class="fpo-block text-section">
+            <h5 class="media-hd" 
+            ng-if="data.mediaTitle.enable" 
+            ng-bind-html="data.mediaTitle.data"
+            ></h5>
+
+            <p 
+            ng-if="data.mediaDescription.enable" 
+            ng-bind-html="data.mediaDescription.data"
+            ></p>
+              <a 
+              ng-if="data.mediaButton.enable && data.buttonLink.externalUrl" 
+              href="{{data.buttonLink.data}}"
+              class="em-c-btn em-c-btn--primary em-c-btn--large link-btn" 
+              target="_blank" >
+                <span class="em-c-btn__text" ng-bind-html="data.mediaButton.data"></span>
+              </a>
+
+              <a 
+              ng-if="data.mediaButton.enable && data.buttonLink.internalUrl" 
+              ui-sref="{{data.buttonLink.data}}" 
+              navigation 
+              page-info="data.buttonLink.page"
+              class="em-c-btn em-c-btn--primary em-c-btn--large link-btn" 
+              >
+                <span class="em-c-btn__text" ng-bind-html="data.mediaButton.data"></span>
+              </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end Media Text panel -->
+  </div>
+
+</div>
+</div>

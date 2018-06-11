@@ -1,0 +1,145 @@
+<header
+header-footer-edit-handler 
+class="header-panel em-c-header em-c-header--large-nav"
+role="banner"
+ng-class="{'em-c-header--blue': colorscheme == 'Blue', 'em-c-header--theme-red': colorscheme == 'Red'}"
+>
+  <div ng-if="data.profile" class="em-l-container em-c-header__inner stock-header large-nav">
+    <div class="em-c-header__body">
+      <div id="top-utility" class="wrapper-max">
+        <div class="wrapper-inner">
+          <nav class="nav-top-utility">
+            <ul>
+              <li class="item">
+                <a href="http://ir.exxonmobil.com/phoenix.zhtml?c=115024&amp;p=irol-stockQuote" target="_blank" class="ticker">
+                  <img class="ticker-img" ng-src="https://quotes.corporate-ir.net/media_files/IROL/11/115024/QI/xom_qi.gif">
+                </a>
+              </li>
+              <li class="item last-top-utility">
+                <a href="http://mysite.na.xom.com/_layouts/XOM/xomMySite.aspx?destiny=http%3a%2f%2fmysite.na.xom.com%3a80%2fdefault.aspx">My Site</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="em-l-container em-c-header__inner">
+    <div class="em-c-header__body">
+      <div class="em-c-header__title-container">
+        <h4 class="em-c-header__kicker" ng-if="data.kicker">{{data.kickerText}}</h4>
+        <h2 class="em-c-header__title header-link">
+          <a 
+            rel="home" 
+            class="em-c-header__title-link"
+            ng-if="!data.pageTree[0].IsExternal" 
+            ui-sref="{{data.pageTree[0].Url}}"
+            ui-sref-active='em-is-current'
+            navigation page-info="data.pageTree[0]"
+            >
+            {{data.headerText}}
+          </a>
+          <a 
+            rel="home"
+            class="em-c-header__title-link"
+            ng-if="data.pageTree[0].IsExternal"
+            class="em-c-primary-nav__sublink"
+            href="{{data.pageTree[0].Url}}"
+            target="_blank"
+            >
+            {{data.headerText}}
+          </a>
+        </h2>
+      </div>
+      <!-- end em-c-header__left -->
+      <button class="em-c-btn em-c-btn--small em-c-btn--inverted em-c-header__nav-btn"
+      ng-click="menuClick();">
+        <div class="em-c-btn__inner">
+          <svg class="em-c-btn__icon em-js-btn-icon" data-em-btn-toggle-text="Close" data-em-icon-path="{{cdnPath + '/unity-1.1.1/images/em-icons.svg'}}">
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href = "" ng-href="{{cdnPath + '/unity-1.1.1/images/em-icons.svg#icon-menu'}}"></use>
+          </svg>
+          <svg class="em-c-btn__icon em-u-is-hidden em-js-btn-swap-icon" data-em-icon-path="{{cdnPath + '/unity-1.1.1/images/em-icons.svg">
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href = "" ng-href="{{cdnPath + '/unity-1.1.1/images/em-icons.svg#icon-x'}}"></use>
+          </svg>
+          <span class="em-c-btn__text em-js-btn-label">Menu</span>
+        </div>
+      </button>
+      <div class="em-c-header__nav-container em-js-nav-panel">
+        <nav id="nav" class="em-c-primary-nav" role="navigation">
+          <ul class="em-c-primary-nav__list">
+            <li 
+              class="em-c-primary-nav__item " 
+      
+              ng-repeat="link in data.pageTree track by $index"
+              ng-mouseleave="dropDown($event)"
+              ng-mouseenter="dropDown($event)"
+              >
+              <a 
+                ng-if="!link.IsExternal" 
+                ui-sref="{{ link.Url }}" 
+                ui-sref-active='em-is-current'
+                highlight-active-page highlight="link.Id == activePageId"
+                class="em-c-primary-nav__link  em-c-primary-nav__link--has-children em-js-nav-dropdown-trigger header-link" 
+
+                >
+                <ng-container navigation page-info="link">{{link.Title}}</ng-container> 
+                  <span  ng-if="link.Children" ng-click="childDropdown($event)">
+                    <svg  class="em-c-icon em-c-primary-nav__icon" >
+                      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href = "" ng-href="{{cdnPath + '/unity-1.1.1/images/em-icons.svg#icon-caret-down'}}" ></use>
+                    </svg>
+                  </span>
+
+              </a>
+              <a 
+                ng-if="link.IsExternal" 
+                href="{{link.Url}}" 
+                target="_blank"
+                class="em-c-primary-nav__link  em-c-primary-nav__link--has-children em-js-nav-dropdown-trigger header-link" 
+                
+                >
+                <ng-container navigation page-info="link">{{link.Title}}</ng-container> 
+                  <svg ng-if="link.Children" class="em-c-icon em-c-primary-nav__icon">
+                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href = "" ng-href="{{cdnPath + '/unity-1.1.1/images/em-icons.svg#icon-caret-down'}}" ng-click="childDropdown($event)"></use>
+                  </svg>
+              </a>
+              <ul ng-if="link.Children" class="em-c-primary-nav__sublist em-js-nav-dropdown ">
+                <li 
+                  navigation page-info="sublink" 
+                  ng-repeat="sublink in link.Children track by $index" 
+                  class="em-c-primary-nav__subitem header-link"
+                  >
+                  <a 
+                  ng-if="sublink.IsExternal" 
+                  class="em-c-primary-nav__sublink" 
+                  href="{{sublink.Url}}"
+                  >
+                    {{sublink.Title}}
+                  </a>
+                  <a 
+                  ng-if="!sublink.IsExternal" 
+                  class="em-c-primary-nav__sublink" 
+                  ui-sref="{{sublink.Url}}"
+                  ui-sref-active='em-is-current'
+                  >
+                    {{sublink.Title}}
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+        <nav id="global-nav" ng-if="data.global" class="em-c-global-nav" role="navigation">
+          <ul class="em-c-global-nav__list">
+            <ng-container ng-if="data.global">
+              <li class="em-c-global-nav__item " ng-repeat="globalLink in data.globalPageTree track by $index">
+                <a class="em-c-global-nav__link " href="{{globalLink.URL}}" target="_blank">
+                  {{globalLink.Title}}
+                </a>
+              </li>
+            </ng-container>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>

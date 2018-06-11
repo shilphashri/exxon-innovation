@@ -1,0 +1,68 @@
+<div 
+class="panel-padding clearfix" 
+panel-edit-handler 
+ng-class="{'grey':data.grayBackground}"
+highlighter 
+is-multiple="false"
+highlight="data.editing"
+>
+<div class="em-l-container">
+  <h3 class="contact-hd panel-main-hd" ng-if="data.panelTitle.enable" ng-bind-html="data.panelTitle.data"></h3>
+  <div class="code-preview">
+    <div class="tab-card">
+      <div
+      class="em-c-tabs em-js-tabs"
+      id="dropdown"
+      ng-class="{
+        'open-dropdown':addClass, 
+        'em-is-active': colorscheme =='Red',
+        'em-c-header--blue': colorscheme =='Blue'
+      }">
+      <a 
+        id="displayText" 
+        ng-click="toggleTab();"
+        ng-class="{
+          'em-is-active': colorscheme =='Red',
+          'em-c-header--blue': colorscheme =='Blue'
+        }"
+        >
+        {{mobileTabHeading}}
+      </a>
+        <ul class="em-c-tabs__list" id="list">
+          <li class="em-c-tabs__item " ng-repeat="tab in data.data track by $index">
+            <a 
+              class="em-c-tabs__link em-js-tab" 
+              ng-class="{
+                'em-is-active':((curTab == $index) && colorscheme =='Red'),
+                'em-c-header--blue':((curTab == $index) && colorscheme =='Blue')
+              }" 
+              ng-click="getTab(tab.data.tabTitle.data, $index)" 
+              ng-bind-html="tab.data.tabTitle.data"
+            >
+            </a>
+          </li>
+        </ul>
+
+        <div class="em-c-tabs__body">
+          <div 
+          class="em-c-tabs__panel em-js-tabs-panel" 
+          ng-repeat="item in data.data track by $index"
+          ng-class="{'em-is-active':curTab == $index}"
+          id="{{'#tab-panel-'+($index)}}" 
+          ng-if="curTab == $index">
+            <h3 
+              ng-if="item.data.tabHeading.enable" 
+              ng-bind-html="item.data.tabHeading.data"
+            ></h3>
+            <p
+              class="em-c-text-passage" 
+              ng-if="item.data.tabDescription.enable" 
+              ng-bind-html="item.data.tabDescription.data" 
+            ></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

@@ -1,0 +1,82 @@
+<div 
+class="stacked-blocks panel-padding clearfix" 
+panel-edit-handler 
+ng-class="{'grey':data.grayBackground}"
+highlighter 
+is-multiple="false"
+highlight="data.editing"
+>
+  <div class="em-l-container">
+    <ul 
+      class="em-c-picture-card-list em-l-grid em-l-grid--3up " 
+      >
+      <li 
+      class="em-c-picture-card-list__item em-l-grid__item"
+      ng-repeat="content in finalData | viewAll : data.view.displayNo : data.view.display track by $index">
+        <div 
+          class="em-c-stacked-block"
+          highlighter 
+          is-multiple="true"
+          highlight="!data.isDynamic && content.editing" 
+        >
+          <div class="em-c-stacked-block__header">
+            <a class="em-c-stacked-block__link "
+            ng-if="content.data.link.externalUrl" 
+            href="{{content.data.link.data}}"
+            target="_blank"
+            >
+              <img 
+                ng-src="{{content.data.contentBg.data}}" 
+                alt="Alt Text" 
+                style="width: 100%" 
+                class="em-c-stacked-block__img"/>
+                <span 
+                ng-if="content.data.contentTitle.enable" 
+                class="em-c-stacked-block__title break-word"
+                ng-bind-html="content.data.contentTitle.data"
+                ></span>
+            </a>
+            <a class="em-c-stacked-block__link "
+              ng-if="content.data.link.internalUrl" 
+              ui-sref="{{content.data.link.data}}"
+              navigation page-info="content.data.link.page"
+              >
+              <img 
+              ng-src="{{content.data.contentBg.data}}" 
+              alt="Alt Text" 
+              style="width: 100%"
+              class="em-c-stacked-block__img"/>
+              <span 
+                ng-if="content.data.contentTitle.enable" 
+                class="em-c-stacked-block__title break-word" 
+                ng-bind-html="content.data.contentTitle.data"
+                >
+              </span>
+            </a>
+          </div>
+          <div class="em-c-stacked-block__body">
+            <p 
+              class="em-c-stacked-block__desc break-word" 
+              ng-if="content.data.contentSummary.enable" 
+              ng-bind-html="content.data.contentSummary.data"
+            >
+          </div>
+          <div 
+            class="em-c-stacked-block__footer break-word" 
+            ng-if="content.data.contentFooter.enable"
+            ng-bind-html="content.data.contentFooter.data"
+          ></div>
+        </div>
+      </li>
+    </ul>
+    <div class="em-u-text-align-center">
+      <button 
+        class="em-c-btn em-c-btn--primary more-btn"
+        ng-if="data.view.enable && (finalData.length > data.view.displayNo)" 
+        ng-click="viewAllLess()"
+        >
+        <span class="em-c-btn__text">{{data.view.text}}</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,70 @@
+<div 
+class="picture-card panel-padding clearfix" 
+panel-edit-handler 
+ng-class="{'grey':data.grayBackground}"
+highlighter 
+is-multiple="false"
+highlight="data.editing"
+>
+<div 
+  class="em-l-container"
+  >
+  <ul class="em-c-picture-card-list em-l-grid em-l-grid--3up em-u-margin-top">
+    <li 
+      class="em-c-picture-card-list__item em-l-grid__item" 
+      ng-repeat="item in finalData | viewAll : data.view.displayNo : data.view.display"
+      highlighter 
+      is-multiple="true"
+      highlight="!data.isDynamic && item.editing"
+    >
+      <a 
+        ng-if="item.data.imageLink.externalUrl" 
+        class="em-c-picture-card"
+        href="{{item.data.imageLink.data}}"
+        target="_blank" 
+      >
+        <img ng-src="{{item.data.image.data}}" alt="Alt Text" class="em-c-picture-card__img"/>
+        <div 
+        class="em-c-picture-card__body" 
+        ng-class="{'image-gradient': (!item.data.headLine.enable && !item.data.text.enable)}"
+        >
+          <p class="em-c-picture-card__kicker"></p>
+          <h2 ng-if="item.data.headLine.enable" class="em-c-picture-card__title" ng-bind-html="item.data.headLine.data"></h2>
+          <svg ng-hide="!item.data.headLine.enable && !item.data.text.enable" class="em-c-icon em-c-picture-card__icon">
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="" ng-href="{{ cdnPath + '/unity-1.1.1/images/em-icons.svg#icon-caret-right'}}"></use>
+          </svg>
+          <p ng-if="item.data.text.enable" class="em-c-picture-card__desc" ng-bind-html="item.data.text.data"></p>
+        </div>
+      </a>
+      <a 
+        ng-if="item.data.imageLink.internalUrl"
+        class="em-c-picture-card"
+        ui-sref="item.data.imageLink.data"
+        navigation page-info="item.data.imageLink.page"
+      >
+        <img ng-src="{{item.data.image.data}}" alt="Alt Text" class="em-c-picture-card__img"/>
+        <div 
+        class="em-c-picture-card__body" 
+        ng-class="{'image-gradient': (!item.data.headLine.enable && !item.data.text.enable)}"
+        >
+          <p class="em-c-picture-card__kicker"></p>
+          <h2 ng-if="item.data.headLine.enable" class="em-c-picture-card__title" ng-bind-html="item.data.headLine.data"></h2>
+          <svg ng-hide="!item.data.headLine.enable && !item.data.text.enable" class="em-c-icon em-c-picture-card__icon">
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href ng-href="{{ cdnPath + '/unity-1.1.1/images/em-icons.svg#icon-caret-right'}}"></use>
+          </svg>
+          <p ng-if="item.data.text.enable" class="em-c-picture-card__desc" ng-bind-html="item.data.text.data"></p>
+        </div>
+      </a>
+    </li>
+  </ul>
+      <div class="em-u-text-align-center">
+  <button 
+    class="em-c-btn em-c-btn--primary more-btn"
+    ng-if="data.view.enable && (finalData.length > data.view.displayNo)" 
+    ng-click="viewAllLess()"
+    >
+    <span class="em-c-btn__text">{{data.view.text}}</span>
+  </button>
+</div>
+</div>
+</div>

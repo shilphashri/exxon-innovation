@@ -1,0 +1,44 @@
+<div 
+class="text-passage-2 panel-padding clearfix" 
+panel-edit-handler 
+ng-class="{'grey':data.grayBackground}"
+highlighter 
+is-multiple="false"
+highlight="data.editing"
+>
+  <div class="code-preview-2col">
+    <div class="panel-for-text by-2-equal em-c-text-passage">
+      <div class="em-l-container">
+        <div class="em-l-grid em-l-grid--2up ">
+          <div 
+          class="em-l-grid__item" 
+          ng-repeat="item in data.data track by $index" 
+          highlighter 
+          is-multiple="true"
+          highlight="item.editing"
+          >
+            <div 
+            class="fpo-block"
+            >
+              <h3 
+              ng-if="item.data.passageHeading.enable" 
+              class="panel-hd break-word"
+              ng-bind-html="item.data.passageHeading.data"
+              ></h3>
+              <p 
+              ng-if="item.data.passageIntro.enable" 
+              class="panel-normal-text break-word"
+              ng-bind-html="item.data.passageIntro.data"
+              ></p>
+              <p 
+              ng-if="item.data.passageDescription.enable" 
+              class="panel-small-text break-word" 
+              ng-bind-html="item.data.passageDescription.data" 
+              ></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

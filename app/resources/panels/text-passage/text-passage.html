@@ -1,0 +1,30 @@
+<div 
+class="panel-padding clearfix" 
+panel-edit-handler 
+ng-class="{'grey':data.grayBackground}"
+highlighter 
+is-multiple="false"
+highlight="data.editing"
+>
+  <div class="em-l-container">
+    <div class="em-c-text-passage" >
+      <h1 
+      class="break-word" 
+      ng-if="data.passageHeading.enable" 
+      ng-bind-html="data.passageHeading.data"
+      >
+      </h1>
+      <p 
+      ng-if="data.passageIntro.enable" 
+      class="em-c-text-passage__intro break-word" 
+      ng-bind-html="data.passageIntro.data"
+      >
+      </p>
+      <p 
+      ng-if="data.passageDescription.enable" 
+      ng-bind-html="data.passageDescription.data"
+      class="break-word" 
+      ></p>
+    </div>
+  </div>
+</div>

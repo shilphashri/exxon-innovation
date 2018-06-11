@@ -1,0 +1,20 @@
+<div 
+class="location-map panel-padding clearfix" 
+panel-edit-handler 
+ng-class="{'grey':data.grayBackground}"
+highlighter 
+is-multiple="false"
+highlight="data.editing"
+>
+  <div class="em-l-container">
+      <h2 ng-if="data.panelTitle.enable" class="text-center panel-main-hd"   
+      position="data.panelTitle.cursorPosition"
+      ng-bind-html="data.panelTitle.data"></h2>
+  </div>
+
+  <div class="em-l-container">
+      <div>
+        <div id="map{{random}}" class="map"></div>
+      </div>
+  </div>
+</div>

@@ -1,0 +1,72 @@
+<div 
+class="media-card panel-padding clearfix" 
+panel-edit-handler 
+ng-class="{'grey':data.grayBackground}"
+highlighter 
+is-multiple="false"
+highlight="data.editing"
+>
+<div class="em-l-container">
+  <h5 ng-if="data.panelTitle.enable" id="media-title" class="panel-main-hd">{{data.panelTitle.data}}</h5>
+  <ul 
+    class="em-c-card-list  em-l-grid em-l-grid--3up"
+    highlighter 
+    highlight="data.isDynamic && data.sharePointEdit"
+    >
+    <li 
+    class="em-c-card-list__item em-l-grid__item" 
+    ng-repeat="item in finalData | viewAll : data.view.displayNo : data.view.display"
+    >
+      <ng-container
+      highlighter 
+      is-multiple="true"
+      highlight="!data.isDynamic && item.editing"
+      >
+        <div class="em-c-card ">
+          <div class="em-c-card__body">
+            <div class="em-c-media-block em-c-media-block--small">
+              <div class="em-c-media-block__media">
+                <img 
+                ng-src="{{item.data.image.data}}"
+                alt="Alt Text" class="em-c-media-block__img"
+                />
+              </div>
+              <div class="em-c-media-block__body">
+                <h2 
+                class="em-c-media-block__headline break-word"
+                ng-if="item.data.title.enable"
+                ng-bind-html="item.data.title.data"
+                ></h2>
+                <p 
+                class="em-c-media-block__desc break-word" 
+                ng-if="item.data.description.enable"
+                ng-bind-html="item.data.description.data"
+                ></p>
+                <span 
+                  class="em-c-status__label break-word" 
+                  ng-if="item.data.label.enable"
+                  ng-bind-html="item.data.label.data"
+                  ></span>
+              </div>
+            </div>
+          </div>
+          <div 
+          class="em-c-card__footer break-word" 
+          ng-if="item.data.footer.enable"
+          ng-bind-html="item.data.footer.data"
+          ></div>
+        </div>
+      </ng-container>
+    </li>
+  </ul>
+      <div class="em-u-text-align-center">
+  <button 
+    class="em-c-btn em-c-btn--primary more-btn"
+    ng-if="data.view.enable && (finalData.length > data.view.displayNo)" 
+    ng-click="viewAllLess()"
+    >
+    <span class="em-c-btn__text">{{data.view.text}}</span>
+  </button>
+</div>
+</div>
+</div>

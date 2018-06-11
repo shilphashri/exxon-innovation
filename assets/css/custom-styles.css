@@ -1,0 +1,45 @@
+
+/*custom footer start*/
+.footer-banner{
+  margin: 0 auto;
+  background-color: rgb(55,55,55);
+  color: #f8f8f8;
+}
+
+.text-highlight{
+  color: rgb(249,160,27);
+  font-family: EMprintSemibold;
+}
+.container{
+  padding-right: 70px;
+    padding-left: 70px;
+}
+.person-contact {
+  margin-top: 26px;
+}
+.person-contact .person-social {
+  position:relative;
+}
+
+.person-social-name {
+  position: relative;
+  width: 217px;
+}
+
+.person-social-icon-grp, .person-social-icon, .person-social-name{
+  display: inline-block;
+}
+
+.person-social-icon{
+  padding:0px 12px;
+}
+
+.person-social-name h3 {
+  float: left;
+}
+
+.person-contact .person-social {
+  position: relative;
+  margin-bottom: 15px;
+}
+/*custom footer ends*/

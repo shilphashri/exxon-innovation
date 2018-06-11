@@ -1,0 +1,28 @@
+<div 
+class="panel-padding clearfix" 
+panel-edit-handler 
+ng-class="{'grey':data.grayBackground}"
+highlighter 
+is-multiple="false"
+highlight="data.editing"
+>
+<div class="em-l-container">
+  <blockquote 
+  class="em-c-pullquote" 
+  >
+    <svg class="em-c-icon em-c-pullquote__icon">
+      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="" ng-href="{{cdnPath + '/panels/pull-quote/em-icons.svg#icon-quote'}}"></use>
+    </svg>
+    <div 
+      ng-if="data.quoteText.enable" 
+      class="em-c-pullquote__quote break-word"
+      ng-bind-html=" data.quoteText.data"
+    ></div>
+    <cite 
+      ng-if="data.citiation.enable" 
+      class="em-c-pullquote__citation break-word"
+      ng-bind-html=" data.citiation.data"
+    ></cite>
+  </blockquote>
+</div>
+</div>

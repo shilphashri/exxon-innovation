@@ -1,0 +1,90 @@
+<div 
+class="image-slider clearfix" 
+panel-edit-handler 
+ng-class="{'grey':data.grayBackground}"
+highlighter 
+is-multiple="false"
+highlight="data.editing"
+>
+  <div class="image-carousel">
+    <div>
+      <ul rn-carousel class="image" style="width: 100%;height: 370px;" rn-carousel-index="carouselIndex">
+        <li 
+          ng-repeat="slide in data.data track by $index" 
+          style="height: 370px;" 
+          >
+          <div 
+            class="em-c-hero em-c-hero--tinted"
+            ng-class="{
+             'em-c-hero em-c-hero--tinted':slide.data.sliderImage.type === 'Tinted',
+             'em-c-hero em-c-hero--bare':slide.data.sliderImage.type === 'Bare',
+             'em-c-hero':slide.data.sliderImage.type === 'Default'
+            }" 
+            style=" margin: 0 !important; background-image: url('{{slide.data.sliderImage.data}}'); "
+            >
+            
+            <div class="em-c-hero__body" style="height: 370px;">
+              <div class="em-l-container">
+                <h1 
+                ng-if = "slide.data.sliderTitle.enable" 
+                class="em-c-hero__title" 
+                ng-bind-html="slide.data.sliderTitle.data"
+                >
+                </h1>
+                <p 
+                ng-if = "slide.data.sliderText.enable" 
+                class="em-c-hero__desc" 
+                ng-bind-html="slide.data.sliderText.data"
+                >
+                </p>
+                <a 
+                ng-if="slide.data.sliderButton.enable && slide.data.sliderButtonLink.externalUrl"
+                href="{{slide.data.sliderButtonLink.data}}" 
+                class="em-c-btn em-c-btn--primary em-c-btn--large slide-btn"
+                target="_blank"
+                >
+                  <span class="em-c-btn__text" ng-bind-html="slide.data.sliderButton.data"></span>
+                </a>
+                <a 
+                ng-if="slide.data.sliderButton.enable && slide.data.sliderButtonLink.internalUrl" 
+                ui-sref="{{slide.data.sliderButtonLink.data}}" 
+                navigation 
+                page-info="slide.data.sliderButtonLink.page"
+                class="em-c-btn em-c-btn--primary em-c-btn--large slide-btn" 
+                >
+                  <span class="em-c-btn__text" ng-bind-html="slide.data.sliderButton.data"></span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div rn-carousel-controls class="carousel-controls">
+      <span class="rn-carousel-control rn-carousel-control-prev" ng-click="prevSlide()">
+        <img ng-src = "{{cdnPath}}/panels/image-slider/left-arrow.png" ng-if = "data.data.length > 1" >
+      </span>
+      <span class="rn-carousel-control rn-carousel-control-next" ng-if = "data.data.length > 1" ng-click="nextSlide()">
+       <img ng-src = "{{cdnPath}}/panels/image-slider/right-arrow.png" ng-if = "data.data.length > 1">
+     </span>
+    </div>
+      <div 
+        rn-carousel-indicators="" 
+        ng-if="data.data.length > 1" 
+        slides="data.data" 
+        rn-carousel-index="carouselIndex"
+        class="carousel-nav"
+        >
+        <div class="rn-carousel-indicator">
+          <span 
+            ng-if="data.data" 
+            ng-repeat="slide in data.data" 
+            ng-class="{active: $index==carouselIndex}" 
+            ng-click="goToSlide($index)"
+            >
+              ●
+          </span>
+        </div>
+      </div>
+  </div>
+</div>

@@ -1,0 +1,64 @@
+<div 
+class="table-panel panel-padding clearfix" 
+table-list-edit-handler 
+ng-class="{'grey':data.grayBackground}"
+highlighter 
+is-multiple="false"
+highlight="data.editing"
+>
+<div class="em-l-container">
+  <h5 ng-if="data.panelTitle.enable" id="media-title" class="panel-main-hd">{{data.panelTitle.data}}</h5>
+  <div 
+    class="em-c-table-object"
+    >
+    <div class="em-c-table-object__body">
+      <div class="em-c-table-object__body-inner">
+        <table class="em-c-table " ng-if="data.isHorizontal">
+          <thead class="em-c-table__header">
+            <tr class="em-c-table__header-row">
+              <th 
+                scope="col" 
+                class="em-c-table__header-cell " 
+                ng-repeat="item in data.columnNames"
+                >
+                {{item}}
+              </th>
+            </tr>
+          </thead>
+          <tbody class="em-c-table__body ">
+            <tr class="em-c-table__row " ng-repeat="row in data.data track by $index">
+              <td ng-repeat="column in data.columnNames" class="em-c-table__cell em-js-cell em-js-cell-editable" colspan="">
+                {{row[column]}}
+              </td>
+            </tr>
+          </tbody>
+          <tfoot class="em-c-table__footer">
+            <tr class="em-c-table__footer-row">
+            </tr>
+          </tfoot>
+        </table>
+        <table class="em-c-table " ng-if="!data.isHorizontal">
+          <tbody class="em-c-table__body ">
+            <tr class="em-c-table__row " ng-repeat="column in data.columnNames track by $index">
+              <th scope="col" class="em-c-table__header-cell vertical-heading">
+                {{column}}
+              </th>
+              <td 
+                ng-repeat="columnValue in data.verticalTableObject[column] track by $index" 
+                class="em-c-table__cell em-js-cell em-js-cell-editable" 
+                colspan=""
+                >
+                {{columnValue}}
+              </td>
+            </tr>
+          </tbody>
+          <tfoot class="em-c-table__footer">
+            <tr class="em-c-table__footer-row">
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

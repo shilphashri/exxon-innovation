@@ -1,0 +1,153 @@
+<div 
+class="panel-padding clearfix" 
+panel-edit-handler 
+ng-class="{'grey':data.grayBackground}"
+highlighter 
+is-multiple="false"
+highlight="data.editing"
+>
+  <div class="code-preview generalForm">
+    <form name='generalForm'>
+      <div class="contact-form">
+      <div class="em-l-linelength-container">
+        <div class="overview-section em-u-text-align-center">
+          <h5 ng-if="data.panelTitle.enable" class="contact-hd panel-main-hd">{{data.panelTitle.data}}</h5>
+          <p 
+          ng-if="data.introText.enable"
+          class="break-word"
+          ng-bind-html="data.introText.data"
+          ></p>
+          <!-- edit-cursor-indicator 
+          editing='data.introText.editing' 
+          position="data.introText.cursorPosition" -->
+        </div>
+        <div class="em-l-grid em-l-grid--2up">
+          <div class="em-l-grid__item" ng-if="data.Name.enable">
+            <div class="fpo-block">
+              <div class="em-c-field">
+                <label for="" class="em-c-field__label">{{data.Name.data}}</label>
+                <div class="em-c-field__body" ng-form='Name'>
+                  <input disabled="true" ng-if="userDetails.DisplayName" type="text" id="" ng-model="sendData.Name" class="em-c-input" placeholder="Type here..." value="">
+                  <input ng-if="!userDetails.DisplayName" type="text" id="" ng-model="sendData.Name" class="em-c-input" placeholder="Type here..." value="" required="true">
+                </div>
+                <div ng-show="!Name.$valid && sendTriggered" class="em-c-field__note">Enter valid Name</div>
+              </div>
+            </div>
+          </div>
+          <div class="em-l-grid__item" ng-if="data.Email.enable">
+            <div class="fpo-block">
+              <div class="em-c-field " >
+                <label for="" class="em-c-field__label">{{data.Email.data}}</label>
+                <div class="em-c-field__body" ng-form='Email'>
+                  <input disabled="true" ng-if="userDetails.Email" type="text" id="" ng-model="sendData.Email" class="em-c-input" placeholder="Type here..." value="">
+                  <input ng-if="!userDetails.Email" type="text" id="" ng-model="sendData.Email" class="em-c-input" placeholder="Type here..." value="" required="true">
+                </div>
+                <div ng-show="!Email.$valid && sendTriggered" class="em-c-field__note">Enter valid Email</div>
+              </div>
+            </div>
+          </div>
+          <div class="em-l-grid__item" ng-if="data.Phone.enable">
+            <div class="fpo-block"> 
+              <div class="em-c-field ">
+                <label for="" class="em-c-field__label">{{data.Phone.data}}</label>
+                <div class="em-c-field__body" ng-form='Phone'>
+                  <input title="Enter valid phone number" type="number" id="" ng-model="sendData.Phone" class="em-c-input" placeholder="Type here..." value="" required="true" require ng-pattern="/^[(]{0,1}[0-9]{1,3}[)]{0,1}[-\s\.]{0,1}[0-9]{3}[-\s\.]{0,1}[0-9]{4}$/">
+                </div>
+                <div ng-show="!Phone.$valid && sendTriggered" class="em-c-field__note">Enter valid Phone</div>
+              </div>
+            </div>
+          </div>
+          <div class="em-l-grid__item" ng-if="data.Custom1.enable">
+            <div class="fpo-block">
+              <div class="em-c-field ">
+                <label 
+                for="" 
+                class="em-c-field__label"
+                class="break-word" 
+                ng-bind-html="data.Custom1.data"
+                ></label>
+                <!-- edit-cursor-indicator 
+                editing='data.Custom1.editing' 
+                position="data.Custom1.cursorPosition" -->
+                <div class="em-c-field__body" ng-form='Custom1'>
+                  <input type="text" id="" ng-model="sendData.Custom1" class="em-c-input" placeholder="Type here..." value="" required="true" >
+                </div>
+                <div ng-show="!Custom1.$valid && sendTriggered" class="em-c-field__note">Enter valid {{data.Custom1.data}}</div>
+              </div>
+            </div>
+          </div>
+          <div class="em-l-grid__item" ng-if="data.Custom2.enable">
+            <div class="fpo-block">
+              <div class="em-c-field ">
+                <label 
+                for="" 
+                class="em-c-field__label"
+                class="break-word" 
+                ng-bind-html="data.Custom2.data"
+                ></label>
+               <!--  edit-cursor-indicator 
+                editing='data.Custom2.editing' 
+                position="data.Custom2.cursorPosition" -->
+                <div class="em-c-field__body" ng-form='Custom2'>
+                  <input type="text" id="" ng-model="sendData.Custom2" class="em-c-input" placeholder="Type here..." value="" required="true">
+                </div>
+                <div ng-show="!Custom2.$valid && sendTriggered" class="em-c-field__note">Enter valid {{data.Custom2.data}}</div>
+              </div>
+            </div>
+          </div>
+          <div class="em-l-grid__item" ng-if="data.Custom3.enable">
+            <div class="fpo-block">
+              <div class="em-c-field ">
+                <label 
+                for="" 
+                class="em-c-field__label"
+                class="break-word" 
+                ng-bind-html="data.Custom3.data"
+                ></label>
+                <!-- edit-cursor-indicator 
+                editing='data.Custom3.editing' 
+                position="data.Custom3.cursorPosition" -->
+                <div class="em-c-field__body" ng-form='Custom3'>
+                  <input type="text" id="" ng-model="sendData.Custom3" class="em-c-input" placeholder="Type here..." value="" required="true">
+                </div>
+                <div ng-show="!Custom3.$valid && sendTriggered" class="em-c-field__note">Enter valid {{data.Custom3.data}}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="textarea-wrap">
+          <div class="em-c-field " ng-if="data.CommentsField.enable">
+            <label for="" class="em-c-field__label">{{data.CommentsField.data}}</label>
+            <div class="em-c-field__body" ng-form='Comments'>
+              <textarea class="em-c-textarea" id="" ng-model="sendData.Comments" placeholder="Type here..." value="" rows="5" required="true">
+              </textarea>
+            </div>
+            <div ng-show="!Comments.$valid && sendTriggered" class="em-c-field__note">Enter valid Comments</div>
+          </div>
+        </div>
+        <div class="em-c-btn-group ">
+          <div class="btn-section">
+            <button class="em-c-btn cancel-btn em-c-btn--secondary" ng-click="cancel()">
+              <span class="em-c-btn__text">Clear</span>
+            </button>
+            <button 
+            class="em-c-btn em-c-btn--primary" 
+            ng-click="send(generalForm.$valid)"
+            ng-class="{'form-disabled': !generalForm.$valid}"
+            >
+            <span 
+            class="em-c-btn__text"
+            class="break-word" 
+            ng-bind-html="data.SendButton.data"
+            ></span>
+           <!--  edit-cursor-indicator 
+            editing='data.SendButton.editing' 
+            position="data.SendButton.cursorPosition" -->
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+</div>
+</div>

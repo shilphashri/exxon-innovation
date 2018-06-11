@@ -1,0 +1,71 @@
+<footer
+header-footer-edit-handler  
+class="footer em-c-footer"
+role="contentinfo"
+>
+  <div class="em-l-container">
+    <div class="em-c-footer__inner">
+      <div class="em-l em-l--two-column-wide">
+        <div class="em-l__main">
+          <ul class="em-l-grid em-l-grid--5up child-nav-container">
+            <li class="em-l-grid__item" ng-repeat="link in data.pageTree track by $index">
+              <a 
+                navigation 
+                page-info="link" 
+                ng-if="!link.IsExternal" 
+                ui-sref="{{link.Url}}" 
+                ui-sref-active='em-is-current'
+                class="em-c-multicolumn-nav__link"
+              >
+                {{link.Title}}
+              </a>
+              <a 
+                navigation 
+                page-info="link" 
+                ng-if="link.IsExternal" 
+                href="{{link.Url}}" 
+                class="em-c-multicolumn-nav__link"
+              >
+                {{link.Title}}
+              </a>
+              <ul ng-if="link.Children.length>0" class="em-c-multicolumn-nav em-c-multicolumn-nav--horizontal sub-nav-container" role="navigation">
+                <li 
+                class="em-c-multicolumn-nav__item footer-link"
+                ng-repeat="sublink in link.Children track by $index"
+                >
+                  <a 
+                  navigation 
+                  page-info="sublink" 
+                  class="em-c-multicolumn-nav__link"
+                  ng-if="sublink.IsExternal" 
+                  href="{{sublink.Url}}"
+                  >
+                    {{sublink.Title}}
+                  </a>
+                  <a 
+                  navigation 
+                  page-info="sublink" 
+                  class="em-c-multicolumn-nav__link"
+                  ng-if="!sublink.IsExternal" 
+                  ui-sref="{{sublink.Url}}"
+                  ui-sref-active='em-is-current'
+                  >
+                    {{sublink.Title}}
+                  </a>
+                </li>
+              </ul>
+              <span ng-if="link.Children.length>0" class="close"></span>
+            </li>
+            <li ng-if="data.pageTree.length == 1" class="em-l-grid__item dummy-nav" ng-repeat="n in [] | range:4"></li>
+            <li ng-if="data.pageTree.length == 2" class="em-l-grid__item dummy-nav" ng-repeat="n in [] | range:3"></li>
+            <li ng-if="data.pageTree.length == 3" class="em-l-grid__item dummy-nav" ng-repeat="n in [] | range:2"></li>
+            <li ng-if="data.pageTree.length == 4" class="em-l-grid__item dummy-nav" ng-repeat="n in [] | range:1"></li>
+          </ul>
+        </div>
+        <div class="em-l__secondary">
+          <img ng-src = "{{cdnPath}}/panels/footer-001/exxonmobil-it-logo.png" class="em-c-logo" alt="ExxonMobil">
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

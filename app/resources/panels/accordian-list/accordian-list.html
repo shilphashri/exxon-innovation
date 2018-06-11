@@ -1,0 +1,42 @@
+<div 
+class="accordion-list panel-padding clearfix" 
+panel-edit-handler 
+ng-class="{'grey':data.grayBackground}"
+highlighter 
+is-multiple="false"
+highlight="data.editing"
+>
+  <div class="em-l-container">
+    <h3
+      class="contact-hd panel-main-hd"
+      ng-if="data.panelTitle.enable"
+      ng-bind-html="data.panelTitle.data"
+    >
+    </h3>
+    <ul class="em-c-accordion ">
+      <li
+        class="em-c-accordion__item {{ data.enableAccordian == true ? 'em-js-accordion-item' : '' }}"
+        id="accordion-panel-1"
+        ng-repeat="item in data.data track by $index"
+        ng-class="{'em-is-closed' : curMode !== 'EDITOR' && $index!== 0 }"
+        highlighter 
+        is-multiple="true"
+        highlight="item.editing"
+      >
+        <div class="em-c-accordion__header" ng-click='toggleAccordion($event)'>
+          <a class="em-c-accordion__title em-js-accordion-trigger">
+            <ng-container ng-if="data.enableAccordian"> 
+              <svg class="em-c-icon em-c-accordion__icon" >
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="" ng-href="{{ cdnPath + '/unity-1.1.1/images/em-icons.svg#icon-caret-down'}}"></use>
+              </svg>
+            </ng-container>
+            <span class="em-c-accordion__title-text">{{item.data.sectionTitle.data}}</span>
+          </a>
+        </div>
+        <div class="em-c-accordion__body">
+          <p ng-bind-html="item.data.sectionDescription.data"></p>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,63 @@
+<div 
+class="panel-padding clearfix" 
+panel-edit-handler 
+ng-class="{'grey':data.grayBackground}"
+highlighter 
+is-multiple="false"
+highlight="data.editing"
+>
+  <div class="em-l-container code-preview-info-card">
+    <div class="information-card">
+      <div class="em-l-container em-u-text-align-center">
+        <h3 ng-if="data.panelTitle.enable" class="info-hd">{{data.panelTitle.data}}</h3>
+      </div>
+      <div class="em-l-grid em-l-grid--4up " >
+        <div 
+          class="em-l-grid__item"
+          ng-repeat="item in finalData | viewAll : data.view.displayNo : data.view.display"
+          highlighter 
+          is-multiple="true"
+          highlight="!data.isDynamic && item.editing"
+          >
+          <div class="fpo-block em-u-text-align-center">
+            <div class="info-card">
+              <div class="info-card-pic" style="background-image: url('{{item.data.image.data}}');"></div>
+              <h5 ng-if="item.data.title.enable" ng-bind-html="item.data.title.data" class="panel-main-hd"></h5>
+              <p ng-if="item.data.detail.enable" ng-bind-html="item.data.detail.data"></p>
+              <!-- <button ng-if="item.data.buttonText.enable" class="em-c-btn em-c-btn--primary more-btn"> -->
+                <ng-container ng-if="item.data.buttonText.enable">
+                  <a
+                    class="em-c-btn em-c-btn--primary more-btn"
+                    ng-if="item.data.buttonLink.externalUrl"
+                    href="{{item.data.buttonLink.data}}"
+                    target="_blank" 
+                  >
+                    <span class="em-c-btn__text" ng-bind-html="item.data.buttonText.data"></span>
+                  </a>
+                  <a
+                    class="em-c-btn em-c-btn--primary more-btn"
+                    ng-if="item.data.buttonLink.internalUrl"
+                    class="em-c-picture-card"
+                    ui-sref="item.data.buttonLink.data"
+                    navigation page-info="item.data.buttonLink.page"
+                  >
+                    <span class="em-c-btn__text" ng-bind-html="item.data.buttonText.data"></span>
+                  </a>
+                </ng-container>
+              <!-- </button> -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="em-u-text-align-center">
+      <button 
+        class="em-c-btn em-c-btn--primary more-btn"
+        ng-if="data.view.enable && (finalData.length > data.view.displayNo)" 
+        ng-click="viewAllLess()"
+        >
+        <span class="em-c-btn__text">{{data.view.text}}</span>
+      </button>
+    </div>
+    </div>
+  </div>
+</div>
